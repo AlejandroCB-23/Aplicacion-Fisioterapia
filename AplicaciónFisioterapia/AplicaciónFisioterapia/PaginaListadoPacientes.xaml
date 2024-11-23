@@ -1,0 +1,99 @@
+﻿<Page x:Class="AplicaciónFisioterapia.PaginaListadoPacientes"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AplicaciónFisioterapia"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PaginaListadoPacientes">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="255*"/>
+            <ColumnDefinition Width="254*"/>
+            <ColumnDefinition Width="291*"/>
+        </Grid.ColumnDefinitions>
+
+        <ListBox x:Name="lstPacientes" SelectionChanged="lstPacientes_SelectionChanged">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Image 
+                         Width="32" Height="37" Source="{Binding icono_paciente}"></Image>
+                        <TextBlock Text="{Binding Name}" VerticalAlignment="Center">
+                        </TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+
+        </ListBox>
+
+        <StackPanel x:Name="spPacientes" Grid.Column="1" Orientation="Vertical">
+
+            <Label FontWeight="Bold">Identificador:</Label>
+            <TextBox x:Name="txtbID" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left"
+                       Text= "{Binding ElementName=lstPacientes, Path=SelectedItem.Id}"
+                       IsEnabled="False">
+            </TextBox>
+
+            <Label FontWeight="Bold">DNI:</Label>
+            <TextBox x:Name="txtbDNI" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left"
+                       Text= "{Binding ElementName=lstPacientes, Path=SelectedItem.Dni}"
+                       IsEnabled="False">
+            </TextBox>
+
+            <Label FontWeight="Bold">Nombre:</Label>
+            <TextBox x:Name="txtbNombre" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left"
+                       Text= "{Binding ElementName=lstPacientes, Path=SelectedItem.Name}"
+                       IsEnabled="False">
+            </TextBox>
+
+            <Label FontWeight="Bold">Edad:</Label>
+            <TextBox x:Name="txtbEdad" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left"
+                       Text= "{Binding ElementName=lstPacientes, Path=SelectedItem.edad}"
+                       IsEnabled="False"
+                       KeyUp="txtbEdad_KeyUp"
+                       TextChanged="txtbEdad_TextChanged">
+                       
+            </TextBox>
+
+            <Label FontWeight="Bold">Número de tarjeta sanitaria:</Label>
+            <TextBox x:Name="txtbTarjeta" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left"
+                       Text= "{Binding ElementName=lstPacientes, Path=SelectedItem.tarjeta}"
+                       IsEnabled="False"
+                        KeyUp="txtbTarjeta_KeyUp"
+                        TextChanged="txtbTarjeta_TextChanged">
+            </TextBox>
+        </StackPanel>
+
+        <Button x:Name="btnMod_pac" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,-100,0,0" Visibility="Hidden" Click="btnMod_pac_Click">
+            <StackPanel Orientation="Horizontal" Width="77">
+                <Image Source="img/editar.png" Width="20" Height="20" Margin="0,0,5,0"/>
+                <TextBlock Text="Modificar" VerticalAlignment="Center"/>
+            </StackPanel>
+        </Button>
+
+        <Button x:Name="btnEliminar_pac" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,-50,0,0" Visibility="Hidden" Click="btnEliminar_pac_Click">
+            <StackPanel Orientation="Horizontal" Width="77">
+                <Image Source="img/eliminar.png" Width="20" Height="20" Margin="0,0,5,0"/>
+                <TextBlock Text="Eliminar" VerticalAlignment="Center"/>
+            </StackPanel>
+        </Button>
+
+        <Button x:Name="btnGuardar_pac" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,0" Visibility="Hidden" Click="btnGuardar_pac_Click">
+            <StackPanel Orientation="Horizontal" Width="77">
+                <Image Source="img/guardar.png" Width="20" Height="20" Margin="0,0,5,0"/>
+                <TextBlock Text="Guardar" VerticalAlignment="Center"/>
+            </StackPanel>
+        </Button>
+
+        <Button x:Name="btnDescartar_pac" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,50,0,0" Visibility="Hidden" Click="btnDescartar_pac_Click">
+            <StackPanel Orientation="Horizontal" Width="77">
+                <Image Source="img/descartar.png" Width="20" Height="20" Margin="0,0,5,0"/>
+                <TextBlock Text="Descartar" VerticalAlignment="Center"/>
+            </StackPanel>
+        </Button>
+
+    </Grid>
+</Page>
